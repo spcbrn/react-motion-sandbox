@@ -1,0 +1,32 @@
+.app {
+  text-align: center;
+  font-family: monospace;
+}
+
+li {
+  list-style: none;
+}
+
+
+/*----STAGGERED CSS----*/
+
+.wrapper {
+  text-align:center;
+  background:#00897B;
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.wrapper h1 {
+  width:100%;
+}
+
+.view-box {
+  overflow:hidden;
+}
+
+.view-body {
+  overflow: hidden;
+  width: 98vw;
+}
