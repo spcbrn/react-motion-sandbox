@@ -7,6 +7,7 @@ Use the react-motion library to animate UI and components in React.
 
 * [Installation](#installation)
 * [Usage](#usage)
+* [Examples](#examples)
 
 
 ## Installation
@@ -18,18 +19,18 @@ Use the react-motion library to animate UI and components in React.
 
 This is the working directory.
 
-### Examples
+## Examples
 
 After running `npm install`, run `npm start` and navigate to <a href="http://localhost:3000">http://localhost:3000</a>.
 Here you'll be able to navigate between views, and see examples of the animations covered in this repo.
 <br /><br />
 
-#### Slide Transition w/ styled-components
+### Slide Transition w/ styled-components
 <br />
 `/components/MotionStyledComp.js` => A simple slide-in animation using styled-components.
 <br />
 
-##### Creating our Components
+#### Creating our Components
 Here we'll use the styled-components library to generate our `<Wrapper />` component, and to generate the `<Content />` component, which is the component we'll be animating:
 
 ```
@@ -49,7 +50,7 @@ const Content = styled.div`
 
 Benefits of using styled-components are that we can write our CSS with the same syntactic paradigm as a .css file, and additionally we can inject props directly into our CSS in order to set the values of various attributes.  This makes writing custom animations quite straight-forward and flexible.
 
-##### Wrapping our Components
+#### Wrapping our Components
 
 We wrap the element(s)/component(s) that we wish to animate in react-motion's `<Motion />` tag. We then pass an object into the `defaultStyle` prop with the property/value we want react-motion to calculate from, and another into the `style` prop representing what we want the final value of that property to be.  By wrapping the final value in `spring()`, we allow react-motion to calculate and interpolate/return the value using spring physics, which we can apply to our UI element(s) in real-time:
 
@@ -82,11 +83,11 @@ Notice that when using styled-components, we can inject content/elements/child c
 </Content>
 ```
 
-#### Slide Transition w/o styled-components
+### Slide Transition w/o styled-components
 <br />
 `/components/MotionCSS.js` => The same slide-in animation using traditional CSS and custom styling.
 
-##### Creating our components
+#### Creating our components
 
 Here we'll forego using the styled-components library and generate our `<Content />` component by writing a function that takes in props and returns our HTML/JSX (a functional component):
 
@@ -109,7 +110,7 @@ const Content = (props) => {
 
 Notice that we're creating a custom `style` object containing the CSS properties for our `<Content />` component, and using the incoming `props` to determine the value of our `flex-basis` attribute.  Also notice that if we want `<Content />` to render other content/elements/child components, we must add them here, rather than when we render the component.  The reason being that React components, whether class-based or functional, are self-closing, so we cannot use them to wrap other content.
 
-##### Wrapping our Components
+#### Wrapping our Components
 
 This is essentially the same as the above example, though here we are simply wrapping `<Content />` in a `div` with a `className` of `wrapper`, and defining `wrapper`'s attributes in our css file:
 
@@ -121,6 +122,6 @@ This is essentially the same as the above example, though here we are simply wra
 )}
 ```
 
-#### Staggered Transition
+### Staggered Transition
 `/components/StaggeredStyledComp.js` => A simple staggered page transition using styled-components.
 `/components/StaggeredCSS.js` => the same staggered page transitino using traditional CSS and custom styling.
