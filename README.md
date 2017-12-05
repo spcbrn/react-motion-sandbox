@@ -34,6 +34,8 @@ Here you'll be able to navigate between views, and see examples of the animation
 Here we'll use the styled-components library to generate our `<Wrapper />` component, and to generate the `<Content />` component, which is the component we'll be animating:
 
 ```
+import styled from 'styled-components';
+
 const Wrapper = styled.div`
   background:#00897B;
   display: flex;
