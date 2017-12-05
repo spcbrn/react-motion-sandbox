@@ -27,7 +27,7 @@ Here you'll be able to navigate between views, and see examples of the animation
 
 ### Slide Transition w/ styled-components
 <br />
-`/components/MotionStyledComp.js` => A simple slide-in animation using styled-components.
+` /components/MotionStyledComp.js ` => A simple slide-in animation using styled-components.
 <br />
 
 #### Creating our Components
