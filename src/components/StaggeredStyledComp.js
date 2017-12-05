@@ -29,7 +29,7 @@ const SlideBox = styled.div`
   background: ${(props) => props.bgColor};
 `
 
-//<ViewBox /> will expand as our <SlideBox /> components collapse, and will render our content container.
+//<ViewBox /> will expand as our <SlideBox /> components collapse, and will render our content container <ViewBody />.
 const ViewBox = styled.div`
   flex-basis: ${(props) => props.width}%;
   background: ${(props) => props.bgColor};
@@ -48,10 +48,8 @@ class StaggeredStyledComp extends Component {
 
   render() {
     return (
+
       <StaggeredMotion
-        {/*
-          defaultStyles represents the initial set of values to be modified via animation, formatted as an array.
-        */}
         defaultStyles={[
           { width: 100 },
           { width: 100 },
@@ -59,9 +57,6 @@ class StaggeredStyledComp extends Component {
           { width: 100 },
           { width: 0 }
         ]}
-        {/*
-          styles represents the final values/calculations of the set of defaultStyles values.
-        */}
         styles={(prevStyles) => [
           { width: spring(0) },
           { width: spring(prevStyles[0].width) },
@@ -69,6 +64,11 @@ class StaggeredStyledComp extends Component {
           { width: spring(prevStyles[2].width) },
           { width: spring(100-prevStyles[2].width) }
         ]} >
+        {/*
+          defaultStyles represents the initial set of values to be modified via animation, formatted as an array.
+
+          styles represents the final values/calculations of the set of defaultStyles values.
+          */}
         {/*
           When we use react-motion, it always expects a function between it's elements.  The reason for this is that it will invoke that function repeatedly as it runs it's calculation on our values, passing in the current state/values of the calculation.
           For example, here we've given <StaggeredMotion /> an array with a set of objects containing the property, 'width'.  We've told it that for the first four objects the value of 'width' will initially be 100, and the final value should be 0, but we want it to use spring physics to calculate the progression of those values from 0 to 100.  After the first object, each object will reference the value of the last, to create a staggered effect as the calculation is run.  The fifth value will start at 100, and we'll use spring physics to take it down to, ultimately, 100 - 0 (the final value of the property it references), which allows it to grow in proportion to the collapsing <SlideBox /> elements.  As it runs this calculation, it will invoke the below function many times per second, passing in the current values of our array until the calculation is complete and the desired final values are achieved.  This is called interpolation.
