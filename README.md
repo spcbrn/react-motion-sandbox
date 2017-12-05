@@ -84,6 +84,7 @@ Notice that when using styled-components, we can inject content/elements/child c
   <h1>Hello world!</h1>
 </Content>
 ```
+<br /><br />
 
 ### Slide Transition w/o styled-components
 
