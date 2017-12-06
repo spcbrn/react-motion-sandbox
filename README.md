@@ -71,8 +71,8 @@ We wrap the element(s)/component(s) that we wish to animate in react-motion's `<
 </Motion>
 ```
 
-When we use react-motion, it always expects a function between it's elements.  The reason for this is that it will invoke that function repeatedly as it runs it's calculation on our values, passing in the current state/value of the calculation.
-For example, here we've giving `<Motion />` an object with a single property, `width`.  We've told it that the value of `width` will initially be `0`, and it's final value should be `100`, but we want it to use spring physics to calculate the progression of that value from `0` to `100`.  As it runs this calculation, it will invoke the below function many times per second, passing in the current value of `width` until the calculation is complete and the desired final value is achieved.  This is called interpolation.
+When we use react-motion, it always expects a function as it's child.  The reason for this is that it will invoke that function repeatedly as it runs it's calculation on our values, passing in the current state/value of the calculation.
+For example, here we've giving `<Motion />` an object with a single property, `width`.  We've told it that the value of `width` will initially be `0`, and it's final value should be `100`, but we want it to use spring physics to calculate the progression of that value from `0` to `100`.  As it runs this calculation, it will invoke the child function many times per second, passing in the current value of `width` until the calculation is complete and the desired final value is achieved.  This is called interpolation.
 
 
 On each invocation, we take in the object as `style`, pull the interpolating value off of `width`, and pass it into our component via props.  This will update our `flex-basis` value, or any other attribute(s) we choose to apply this to (sizing, positioning, color etc...) on the fly, in real-time.
@@ -125,6 +125,36 @@ This is essentially the same as the above example, though here we are simply wra
 )}
 ```
 
-### Staggered Transition
+### Staggered Transition w/ styled-components
+
 `/components/StaggeredStyledComp.js` => A simple staggered page transition using styled-components.
-`/components/StaggeredCSS.js` => the same staggered page transitino using traditional CSS and custom styling.
+
+#### Creating our components
+
+Here we'll use the styled-components library to generate our `<Wrapper />` component, and to generate the `<***Box />` components that we'll use for our animation, taking in props and assigning their values to the CSS attributes we'll be animating:
+
+```
+const Wrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+`;
+
+const SlideBox = styled.div`
+  flex-basis: ${(props) => props.width}%;
+  background: ${(props) => props.bgColor};
+`
+
+const ViewBox = styled.div`
+  flex-basis: ${(props) => props.width}%;
+  background: ${(props) => props.bgColor};
+  overflow: hidden;
+`
+
+const ViewBody = styled.div`
+  overflow: hidden;
+  width: 98vw;
+`
+```
+
+`/components/StaggeredCSS.js` => the same staggered page transition using traditional CSS and custom styling.
