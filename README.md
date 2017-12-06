@@ -21,6 +21,8 @@ This is the working directory.
 
 ## Examples
 
+* [Slide Transition w/ styled-components](#Slide Transition w/ styled-components)
+
 After running `npm install`, run `npm start` and navigate to <a href="http://localhost:3000">http://localhost:3000</a>.
 Here you'll be able to navigate between views, and see examples of the animations covered in this repo.
 <br /><br />
