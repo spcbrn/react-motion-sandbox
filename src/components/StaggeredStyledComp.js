@@ -10,12 +10,6 @@ const colors = [
   '#00897B'
 ]
 
-/*
-Here we'll use the styled-components library to generate our <Wrapper /> component, and to generate the <*Box /> components that we'll use for our animation.
-
-Benefits of using styled-components are that we can write our CSS with the same syntactic paradigm as a .css file, and additionally we can inject props directly in order to set the values of various attributes.  This makes writing custom animations quite straight-forward and flexible.
-*/
-
 //<Wrapper /> is going to wrap our animation components.
 const Wrapper = styled.div`
   display: flex;
@@ -64,18 +58,6 @@ class StaggeredStyledComp extends Component {
           { width: spring(prevStyles[2].width) },
           { width: spring(100-prevStyles[2].width) }
         ]} >
-        {/*
-          defaultStyles represents the initial set of values to be modified via animation, formatted as an array.
-
-          styles represents the final values/calculations of the set of defaultStyles values.
-          */}
-        {/*
-          When we use react-motion, it always expects a function between it's elements.  The reason for this is that it will invoke that function repeatedly as it runs it's calculation on our values, passing in the current state/values of the calculation.
-          For example, here we've given <StaggeredMotion /> an array with a set of objects containing the property, 'width'.  We've told it that for the first four objects the value of 'width' will initially be 100, and the final value should be 0, but we want it to use spring physics to calculate the progression of those values from 0 to 100.  After the first object, each object will reference the value of the last, to create a staggered effect as the calculation is run.  The fifth value will start at 100, and we'll use spring physics to take it down to, ultimately, 100 - 0 (the final value of the property it references), which allows it to grow in proportion to the collapsing <SlideBox /> elements.  As it runs this calculation, it will invoke the below function many times per second, passing in the current values of our array until the calculation is complete and the desired final values are achieved.  This is called interpolation.
-          On each invokation, we take in the objects as 'styles', pull the interpolating values off of the 'width' properties, and pass them into our components via props.  This will update the 'flex-basis' values, or any other attribute we choose to apply them to (sizing, positioning, color etc...) on the fly, in real-time.
-
-          The result is, starting with the first <SlideBox /> element, that the width of each <SlideBox /> will, using spring physics, collapse from 100 to 0, each triggering the next to collapse, until all four have a width of 0.  While this happens, the <ViewBox /> element's width will grow from 0 to 100, to occupy the space we're creating.
-        */}
         {(styles) => (
           <Wrapper>
             <SlideBox bgColor={colors[0]} width={styles[0].width} />
